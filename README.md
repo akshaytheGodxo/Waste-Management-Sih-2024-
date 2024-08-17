@@ -10,40 +10,40 @@
 </p>
 
 
-<p align="center"> To be edited later</p>
+<p align="center"> Welcome to the Waste Management System project! This repository contains a comprehensive solution designed to optimize waste collection, processing, and recycling for municipalities and organizations. Our system leverages modern technologies to improve efficiency, reduce environmental impact, and promote sustainability.</p>
 
 
 <p align="center">
 <a href="https://github.com/ShaanCoding">📱 Visit this Project</a>
 </p>
 
-
 <h2 id="technologies">💻 Technologies</h2>
 
-- list of all technologies you used
-- react
-- styled components
-- another example
+- React 
+- Express
+- Tailwindcss
+- MySQL
+
+
 
 <h2 id="started">🚀 Getting started</h2>
 
-Here you describe how to run your project locally
+Before you begin, ensure you have the following installed:
 
 <h3>Prerequisites</h3>
 
 Here you list all prerequisites necessary for running your project. For example:
 
 - https://vitejs.dev/
--https://www.npmjs.com/
+- https://www.npmjs.com/
 
 <h3>Cloning</h3>
 
 How to clone your project
 
 ```bash
-git clone your-project-url-in-github
+git clone https://github.com/akshaytheGodxo/Waste-Management-Sih-2024-/tree/MainBranch
 ```
-will be updated
 
 <h3>Starting</h3>
 
@@ -57,24 +57,15 @@ npm run dev
 
 <h2 id="colab">🤝 Collaborators</h2>
 
-<p>Special thank you for all people that contributed for this project. will be updated</p>
+<p>Special thank you for all people that contributed for this project. </p>
 <table>
 <tr>
 
 <td align="center">
-<a href="https://github.com/Fernanda-Kipper">
-<img src="https://avatars.githubusercontent.com/u/61896274?v=4" width="100px;" alt="Fernanda Kipper Profile Picture"/><br>
+<a href="https://github.com/AmadeussSystem">
+<img src="https://avatars.githubusercontent.com/u/176172256?v=4" width="100px;" alt="Ayush Saroj Profile Picture"/><br>
 <sub>
-<b>Fernanda Kipper</b>
-</sub>
-</a>
-</td>
-
-<td align="center">
-<a href="https://github.com/ShaanCoding">
-<img src="https://avatars.githubusercontent.com/u/22236218?v=4" width="100px;" alt="Shaan Khan Profile Picture"/><br>
-<sub>
-<b>Shaan Khan</b>
+<b>Ayush Saroj</b>
 </sub>
 </a>
 </td>
@@ -86,13 +77,7 @@ npm run dev
 
 Here you will explain how other developers can contribute to your project. For example, explaining how can create their branches, which patterns to follow and how to open an pull request
 
-1. `git clone https://github.com/Fernanda-Kipper/text-editor.git`
+1. `https://github.com/akshaytheGodxo/Waste-Management-Sih-2024-/tree/MainBranch`
 2. `git checkout -b feature/NAME`
 3. Follow commit patterns
 4. Open a Pull Request explaining the problem solved or feature made, if exists, append screenshot of visual modifications and wait for the review!
-
-<h3>Documentations that might help</h3>
-
-[📝 How to create a Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
-
-[💾 Commit pattern](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
