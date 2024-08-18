@@ -1,8 +1,9 @@
- function App() {
+import React from "react"
+import Classifier from "./components/Classifier";
+
+function App() {
   return (
-      <h1 className="text-3xl font-bold underline">
-          hi there
-    </h1>
+    <Classifier />
   )
 }
 export default App
