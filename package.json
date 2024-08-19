@@ -10,12 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
     "@tensorflow-models/mobilenet": "^2.0.4",
     "@tensorflow/tfjs-converter": "^1.2.1",
     "@tensorflow/tfjs-core": "^1.2.1",
+    "bootstrap": "^5.3.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-bootstrap": "^2.10.4",
+    "react-dom": "^18.3.1",
+    "react-dropzone": "^14.2.3",
+    "react-router-dom": "^6.26.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
