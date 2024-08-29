@@ -22,7 +22,8 @@
 - React 
 - Express
 - Tailwindcss
-- MySQL
+- MongoDB
+- Google Cloud 
 
 
 
