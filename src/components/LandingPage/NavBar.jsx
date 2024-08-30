@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+import Logo from "../../assets/company-logo.jpeg";
 const pages = [
     { name: 'Home', link: '/' },
     { name: 'Request Collection', link: '/request-collection' },
@@ -41,28 +42,18 @@ function NavBar() {
     };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: '#19d26c' }}>
+        <AppBar position="static" sx={{ backgroundColor: '#7abd7f' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
+                    <Box 
+                        component="img"
                         sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
+                            height: 64,
                         }}
-                    >
-                        EcoZenith
-                    </Typography>
+                        alt='Company-logo'
+                        src={Logo}
 
+                    />
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
