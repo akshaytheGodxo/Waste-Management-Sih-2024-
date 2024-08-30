@@ -6,6 +6,7 @@ const Request = () => {
   const [name, setName] = useState('');
   const [imageData, setImageData] = useState(null);
   const [location, setLocation] = useState('');
+  const [contact, setContact] = useState('');
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -13,6 +14,10 @@ const Request = () => {
 
   const handleAddressChange = (e) => {
     setLocation(e.target.value);
+  };
+
+  const handleContactChange = (e) => {
+    setContact(e.target.value);
   };
 
   const handleImageUpload = (e) => {
@@ -26,13 +31,24 @@ const Request = () => {
     }
   };
 
+  const isContactValid = () => {
+    // Check if the contact is exactly 10 digits
+    const contactRegex = /^\d{10}$/;
+    return contactRegex.test(contact);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isContactValid()) {
+      alert('Please enter a valid 10-digit contact number.');
+      return;
+    }
     try {
       await axios.post('http://localhost:5000/request-collection', {
         name,
         image: imageData,
         location,
+        contact,
       });
       alert('Data submitted successfully!');
     } catch (error) {
@@ -80,6 +96,20 @@ const Request = () => {
                   />
                 </div>
 
+                {/* Contact Input */}
+                <div className="md:col-span-1">
+                  <label htmlFor="contact" className="block text-gray-700">Contact Number</label>
+                  <input
+                    type="text"
+                    name="contact"
+                    id="contact"
+                    className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                    placeholder="10-digit Contact Number"
+                    value={contact}
+                    onChange={handleContactChange}
+                  />
+                </div>
+
                 {/* Image Input */}
                 <div className="md:col-span-2">
                   <label htmlFor="image" className="block text-gray-700">Upload an Image</label>
@@ -96,7 +126,7 @@ const Request = () => {
                 <div className="md:col-span-2 text-right">
                   <div className="inline-flex items-end">
                     <button
-                      className="bg-custom-green  text-white font-bold py-2 px-4 rounded"
+                      className="bg-custom-green text-white font-bold py-2 px-4 rounded"
                       type="submit"
                     >
                       Submit
