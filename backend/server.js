@@ -30,6 +30,7 @@ const OrderSchema = new mongoose.Schema({
   image: String, // Store the image as a Base64 string
   location: String,
   status: String,
+
   orderDate: { type: Date, default: Date.now },
 });
 

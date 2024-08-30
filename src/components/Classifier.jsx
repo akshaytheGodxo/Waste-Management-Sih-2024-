@@ -36,11 +36,9 @@ const Classifier = () => {
             }
         }
 
-        // Map total plastic amount to a percentage or a descriptive term
-        if (plasticAmount > 0.8) return 'High amount of plastic';
-        if (plasticAmount > 0.4) return 'Moderate amount of plastic';
-        if (plasticAmount > 0) return 'Low amount of plastic';
-        return 'No detectable plastic';
+        // Return the plastic amount as a percentage
+        const percentage = (plasticAmount * 100).toFixed(2); // Round to 2 decimal places
+        return `${percentage}% of the image contains plastic`;
     }
 
     const loadModel = async() => {
