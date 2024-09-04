@@ -3,6 +3,7 @@ import * as mobilenet from "@tensorflow-models/mobilenet";
 import './styles/Classifier.css'; // Import the CSS file
 import NavBar from "./LandingPage/NavBar";
 import Footer from "./LandingPage/Footer";
+
 const Classifier = () => {
     const [isModelLoading, setIsModelLoading] = useState(false);
     const [model, setModel] = useState(null);
@@ -10,68 +11,34 @@ const Classifier = () => {
     const [results, setResults] = useState('');
     const imageRef = useRef();
 
-    const biodegradableLabels = [
-        'banana', 'apple', 'orange', 'strawberry', 'grape', 'corn', 'cucumber', 
-        'tomato', 'carrot', 'potato', 'pumpkin', 'zucchini', 'lettuce', 'broccoli',
-        'cabbage', 'spinach', 'beet', 'cauliflower', 'eggplant', 'onion', 'garlic',
-        'ginger', 'lemon', 'lime', 'pineapple', 'mango', 'papaya', 'watermelon',
-        'cantaloupe', 'peach', 'pear', 'plum', 'kiwi', 'cherry', 'avocado', 'fig',
-        'dates', 'almond', 'walnut', 'hazelnut', 'peanut', 'pistachio', 'coconut',
-        'bread', 'bagel', 'toast', 'biscuit', 'croissant', 'pasta', 'rice', 'oatmeal',
-        'cereal', 'egg', 'egg yolk', 'egg white', 'milk', 'butter', 'cheese', 'yogurt',
-        'honey', 'jam', 'jelly', 'soup', 'salad', 'sandwich', 'pizza', 'cake', 'muffin',
-        'cookie', 'waffle', 'pancake', 'tea', 'coffee', 'tea leaves', 'tea bag', 
-        'coffee grounds', 'paper', 'cardboard', 'napkin', 'paper towel', 'wood', 
-        'sawdust', 'leaves', 'grass', 'flowers', 'plant', 'tree', 'bark', 'branches',
-        'mulch', 'compost', 'soil'
-      ];
-    const nonBiodegradableLabels = [
+    // Define plastic-related labels
+    const plasticLabels = [
         'plastic bag', 'plastic bottle', 'plastic cup', 'plastic fork', 'plastic spoon',
         'plastic knife', 'plastic container', 'plastic wrap', 'plastic straws', 
         'plastic utensils', 'plastic food wrapper', 'plastic packaging', 'plastic sheet',
-        'plastic tube', 'plastic box', 'metal can', 'aluminum can', 'steel can', 'tin can',
-        'metal bottle', 'metal lid', 'metal foil', 'metal utensil', 'metal pipe', 'metal wire',
-        'glass bottle', 'glass jar', 'glass cup', 'glass container', 'glass jar lid', 
-        'glass shard', 'glass plate', 'glass bowl', 'glass window', 'glass pane', 'battery',
-        'alkaline battery', 'rechargeable battery', 'lithium battery', 'button battery',
-        'car battery', 'lead battery', 'light bulb', 'fluorescent bulb', 'incandescent bulb',
-        'halogen bulb', 'energy-saving bulb', 'light fixture', 'electronic device', 'cell phone',
-        'tablet', 'laptop', 'computer', 'printer', 'TV', 'radio', 'television', 'monitor',
-        'keyboard', 'mouse', 'charger', 'cable', 'remote control', 'plastic toys', 'rubber toys',
-        'foam toys', 'toys with batteries', 'furniture', 'plastic furniture', 'metal furniture',
-        'glass furniture', 'wood furniture', 'upholstery', 'carpet', 'rugs', 'vinyl flooring',
-        'synthetic fabrics', 'leather products', 'synthetic leather', 'shoes', 'synthetic shoes',
-        'rubber shoes', 'plastic shoes', 'plastic wrap', 'plastic containers', 'plastic utensils',
+        'plastic tube', 'plastic box', 'plastic toys', 'plastic containers', 'plastic utensils',
         'plastic plates', 'plastic cups', 'plastic cutlery', 'plastic bags', 'plastic wrappers',
         'plastic films', 'plastic trays', 'plastic tupperware', 'plastic straws', 'plastic lids',
         'plastic bottle caps'
-      ];
-    
-    const checkCategory = (predictions) => {
-        let isBiodegradable = false;
-        let isNonBiodegradable = false;
+    ];
+
+    const estimatePlasticAmount = (predictions) => {
+        let plasticAmount = 0;
 
         for (let prediction of predictions) {
             const classNames = prediction.className.toLowerCase().split(', ');
-        
+            
             for (let label of classNames) {
-                if (biodegradableLabels.includes(label)) {
-                    isBiodegradable = true;
-                } else if (nonBiodegradableLabels.includes(label)) {
-                    isNonBiodegradable = true;
+                if (plasticLabels.includes(label)) {
+                    // Assume a simple scoring based on confidence
+                    plasticAmount += prediction.probability;
                 }
             }
         }
 
-        if (isBiodegradable && !isNonBiodegradable) {
-            return 'Biodegradable';
-        } else if (isNonBiodegradable && !isBiodegradable) {
-            return 'Non-Biodegradable';
-        } else if (isBiodegradable && isNonBiodegradable) {
-            return 'Mixed (Contains both biodegradable and non-biodegradable items)';
-        } else {
-            return 'Unknown';
-        }
+        // Return the plastic amount as a percentage
+        const percentage = (plasticAmount * 100).toFixed(2); // Round to 2 decimal places
+        return `${percentage}% of the image contains plastic`;
     }
 
     const loadModel = async() => {
@@ -89,7 +56,7 @@ const Classifier = () => {
     const identify = async () => {
         const results = await model.classify(imageRef.current);
         console.log(results);
-        const val = checkCategory(results);
+        const val = estimatePlasticAmount(results);
         setResults(val);
     }
 
@@ -166,15 +133,15 @@ const Classifier = () => {
                     style={{ backgroundColor: 'grey' }} 
                     onClick={identify}
                 >
-                    Identify Image
+                    Identify Plastic Amount
                 </button>
             )}
 
             <div className="output">
-                {results && <h2>This is: {results}</h2>}
+                {results && <h2>{results}</h2>}
             </div>
         </div>
-
+        <Footer />
         </>
     );
 }

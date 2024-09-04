@@ -1,6 +1,7 @@
 import React from "react"
 import Classifier from "./components/Classifier";
 import LandingPage from "./components/LandingPage";
+import Request from "./components/Request";
 import Store from "./components/Store";
 import { createBrowserRouter ,RouterProvider } from "react-router-dom";
 
@@ -17,6 +18,10 @@ function App() {
     {
       path: "/store",
       element: <Store />
+    },
+    {
+      path:"/request-collection",
+      element: <Request />
     }
   ])
 
